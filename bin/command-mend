@@ -1,0 +1,43 @@
+#!/usr/bin/env zsh
+
+# Function to determine if the script is being sourced
+is_sourced() {
+  if [ -n "$ZSH_VERSION" ]; then
+    case $ZSH_EVAL_CONTEXT in (*:file:*) return 0;; esac
+  fi
+  return 1
+}
+
+# If sourced, define the function and set up keybinding
+if is_sourced; then
+    command-mend() {
+        local tmpfile=$(mktemp)
+        print -r -- "$BUFFER" > "$tmpfile"
+        # Open Neovim in a popup, hiding the file path in the statusline and enabling line wrapping
+        tmux display-popup -E -w 90% -h 25% -- nvim "$tmpfile" -c "set statusline='CommandMend2' | set noautochdir | set guifont=Monospace:h16 | set wrap"
+        BUFFER=$(<"$tmpfile")
+        rm "$tmpfile"
+        zle reset-prompt
+    }
+    # Register the widget if being sourced
+    zle -N command-mend
+    # This part allows users to customize the keybinding when sourcing
+    # The default is Ctrl+E but they can override it
+    if [[ -z "$COMMAND_MEND_KEY" ]]; then
+        bindkey '^E' command-mend
+    else
+        bindkey "$COMMAND_MEND_KEY" command-mend
+    fi
+else
+    # When run as a script, show usage information
+    echo "command-mend: A tool to edit command line in a tmux popup"
+    echo ""
+    echo "This script is meant to be sourced in your .zshrc, not executed directly."
+    echo ""
+    echo "Installation:"
+    echo "1. Add 'source \$(which command-mend)' to your .zshrc"
+    echo "2. Restart your shell or run 'source ~/.zshrc'"
+    echo ""
+    echo "Default keybinding is Ctrl+E. To customize, set COMMAND_MEND_KEY before sourcing:"
+    echo "COMMAND_MEND_KEY='^X' source \$(which command-mend)"
+fi
