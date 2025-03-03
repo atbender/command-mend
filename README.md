@@ -2,6 +2,8 @@
 
 A simple utility for editing terminal commands in a tmux popup with Neovim.
 
+![commandMend](.commandMend.gif)
+
 ## Features
 
 - Edit the current command line in a tmux popup window
