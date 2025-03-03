@@ -1,8 +1,8 @@
 class CommandMend < Formula
   desc "Edit terminal commands in a tmux popup with Neovim"
   homepage "https://github.com/atbender/command-mend"
-  url "https://github.com/atbender/command-mend/archive/v0.1.0.tar.gz"
-  sha256 "eec8a00cdeb71f79202c456869fa92d6424fb5290a192dc5dc6eadda26aa5cb1"
+  url "https://github.com/atbender/command-mend/archive/v0.1.1.tar.gz"
+  sha256 "357a6066f967fed5e71b1a20cbe5d010df03bf9b76b6540f11545d3b1bd269e3"
   license "MIT"
 
   depends_on "tmux"
