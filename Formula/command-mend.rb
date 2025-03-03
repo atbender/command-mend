@@ -25,7 +25,6 @@ class CommandMend < Formula
   end
 
   test do
-    # Simple test to check if the script exists and is executable
     system "test", "-x", "#{bin}/command-mend"
   end
 end
