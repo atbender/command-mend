@@ -18,15 +18,15 @@ A simple utility for editing terminal commands in a tmux popup with Neovim.
 
 ### Using Homebrew
 
-```
-brew tap yourusername/tools
+```bash
+brew tap atbender/tools
 brew install command-mend
 ```
 
 Then add to your `.zshrc`:
 
 ```
-# Use default keybinding (Ctrl+E)
+# Use default keybinding (ctrl+e)
 source $(brew --prefix command-mend)/bin/command-mend
 
 # Or use a custom keybinding
@@ -42,7 +42,7 @@ COMMAND_MEND_KEY='^X' source $(brew --prefix command-mend)/bin/command-mend
 ## Usage
 
 1. Type a command in your terminal
-2. Press Ctrl+E (or your custom keybinding)
+2. Press ctrl+e (or your custom keybinding)
 3. Edit the command in the popup Neovim window
 4. Save and exit (`:wq` in Neovim)
 5. The edited command will replace what was in your command line
