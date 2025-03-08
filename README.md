@@ -1,4 +1,4 @@
-# Command-Mend
+# CommandMend
 
 A simple utility for editing terminal commands in a tmux popup with Neovim.
 
